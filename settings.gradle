@@ -1,4 +1,4 @@
-rootProject.name = 'EcommerceBitech'
+rootProject.name = 'Ecommerce'
 include 'negocio'
 include 'servicios'
 

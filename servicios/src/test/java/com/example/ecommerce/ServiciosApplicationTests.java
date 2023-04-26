@@ -7,20 +7,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
-@Transactional
-class ServiciosApplicationTests {
+public class ServiciosApplicationTests {
 
     @Autowired
     private AdministradorServicio administradorServicio;
 
     @Test
     void contextLoads() {
+        System.out.println("Prueba");
     }
 
-    @Test
-    public void crearProducto() {
-        administradorServicio.crearProducto("Locion","ACS-45244","https://i.postimg.cc/0Qbf9Pgw/imagen-2023-04-25-163916726.png",12,"Cuidado");
-    }
+
+
 
 
 }

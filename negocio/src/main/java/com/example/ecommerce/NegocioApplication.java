@@ -1,12 +1,13 @@
-package com.example.ecommercebitech;
+package com.example.ecommerce;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EcommerceBitechApplication {
+public class NegocioApplication {
+
     public static void main(String[] args) {
-        SpringApplication.run(EcommerceBitechApplication.class, args);
+        SpringApplication.run(NegocioApplication.class, args);
     }
 
 }

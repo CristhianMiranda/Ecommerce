@@ -1,14 +1,14 @@
-package com.example.ecommercebitech;
+package com.example.ecommerce;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EcommerceBitechApplicationTests {
+class NegocioApplicationTests {
 
     @Test
     void contextLoads() {
+        System.out.println("Prueba");
     }
-
 
 }
