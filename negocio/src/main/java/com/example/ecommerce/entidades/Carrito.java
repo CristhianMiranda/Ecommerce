@@ -23,7 +23,7 @@ public class Carrito implements Serializable {
     private int id;
 
 
-    @Temporal(TemporalType.DATE)
+    //@Temporal(TemporalType.DATE)
     @Column(nullable = false)
     private LocalDateTime fechaCreacionDate;
 

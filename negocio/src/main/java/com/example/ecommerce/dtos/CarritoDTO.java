@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class CarritoDTO implements Serializable {
     private int id;
-    private Date fechaCreacionDate;
+    private LocalDateTime fechaCreacionDate;
     private ClienteDTO cliente;
     private List<DetalleCarritoDTO> detalleCarritos;
 

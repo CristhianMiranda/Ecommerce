@@ -11,11 +11,13 @@ import com.example.ecommerce.repositorios.CarritoRepositorio;
 import com.example.ecommerce.repositorios.DetalleCarritoRepositorio;
 import com.example.ecommerce.repositorios.ProductoRepositorio;
 import com.example.ecommerce.servicios.ClienteServicio;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class ClienteServicioImplementacion implements ClienteServicio {
     private final ProductoRepositorio productoRepositorio;
 
@@ -31,16 +33,16 @@ public class ClienteServicioImplementacion implements ClienteServicio {
     }
 
     @Override
-    public List<Producto> visualizarProductos() throws ProductoException {
-        List<Producto> productos = productoRepositorio.findAll();
+    public ArrayList<Producto> visualizarProductos() throws ProductoException {
+        ArrayList<Producto> productos = (ArrayList<Producto>) productoRepositorio.findAll();
         if (productos.isEmpty()) {
             throw new ProductoException("No se encontraron productos");
         }
         return productos;
     }
     @Override
-    public void agregarAlCarrito(String idProducto, int cantidad, Cliente cliente) throws ProductoNoEncontradoException{
-        Optional<Producto> productoOptional = productoRepositorio.findById(idProducto);
+    public Carrito agregarAlCarrito(int idProducto, int cantidad, Cliente cliente) throws ProductoNoEncontradoException{
+        Optional<Producto> productoOptional = productoRepositorio.findById(String.valueOf(idProducto));
         if (!productoOptional.isPresent()) {
             throw new ProductoNoEncontradoException("No se encontró el producto con ID " + idProducto);
         }
@@ -64,15 +66,17 @@ public class ClienteServicioImplementacion implements ClienteServicio {
 
         producto.setCantidad(producto.getCantidad() - cantidad);
         productoRepositorio.save(producto);
+
+        return carrito;
     }
 
 
 
 
     @Override
-    public void vaciarCarrito(Cliente cliente) throws CarritoNoEncontradoException {
-        Optional<Carrito> carritoOpt = carritoRepositorio.buscarClienteCarrito(cliente.getCedula());
-        if (carritoOpt.isEmpty()) {
+    public Boolean vaciarCarrito(Carrito carrito,Cliente cliente) throws CarritoNoEncontradoException {
+        //Optional<Carrito> carritoOpt = carritoRepositorio.buscarClienteCarrito(cliente.getCedula());
+        if (carrito.equals(null)) {
             throw new CarritoNoEncontradoException("No se encontró el carrito del cliente");
         }
         /*DetalleCarrito detalleCarrito = detalleCarritoRepositorio.buscarCarrito(carritoOpt.get().getId());
@@ -81,6 +85,7 @@ public class ClienteServicioImplementacion implements ClienteServicio {
             producto.setCantidad(producto.getCantidad() + item.getCantidad());
         }*/
         carritoRepositorio.deleteAll();
+        return true;
     }
 
 

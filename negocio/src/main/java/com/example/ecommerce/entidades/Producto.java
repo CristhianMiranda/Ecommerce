@@ -9,35 +9,37 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-//@AllArgsConstructor
+@AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class Producto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
-    private int id;
+    private Integer id;
 
     @Column(nullable = false)
     @ToString.Include
     private String nombre;
 
+    @ToString.Include
     private String referencia;
 
+    @ToString.Include
     private String urlFoto;
 
     @Column(nullable = false)
     @ToString.Include
     private int cantidad;
 
+    @ToString.Include
     private String categoria;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
     private Administrador administrador;
 
     @OneToMany(mappedBy = "carrito")
     private List<DetalleCarrito> detalleCarritos;
-//nombre,cantidad,categoria,referencia,urlFoto
 
 
     public Producto(String nombre, String referencia, String urlFoto, int cantidad, String categoria) {

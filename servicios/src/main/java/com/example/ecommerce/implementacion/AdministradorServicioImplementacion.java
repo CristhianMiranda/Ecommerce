@@ -24,12 +24,11 @@ public class AdministradorServicioImplementacion implements AdministradorServici
 
     @Override
     public Producto crearProducto(String nombre, String referencia, String urlFoto, int cantidad, String categoria) {
+
         if (nombre == null || nombre.isEmpty()) {
             throw new ProductoException("El nombre del producto no puede ser nulo o vacío");
         }
-        if (referencia == null || referencia.isEmpty()) {
-            throw new ProductoException("La referencia del producto no puede ser nula o vacía");
-        }
+
         Producto producto = new Producto();
         producto.setNombre(nombre);
         producto.setReferencia(referencia);
