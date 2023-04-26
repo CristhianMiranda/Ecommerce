@@ -1,12 +1,14 @@
 package com.example.ecommerce.entidades;
 
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class DetalleCarrito implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

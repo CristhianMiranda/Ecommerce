@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class Carrito implements Serializable {
 
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
-    private Date fechaCreacionDate;
+    private LocalDateTime fechaCreacionDate;
 
     @ManyToOne
     @JoinColumn(nullable = false)
