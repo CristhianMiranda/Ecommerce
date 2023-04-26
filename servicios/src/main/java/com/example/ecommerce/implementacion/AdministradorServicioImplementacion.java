@@ -49,9 +49,7 @@ public class AdministradorServicioImplementacion implements AdministradorServici
 
     @Override
     public Producto actualizarProducto(Producto producto) throws ProductoException{
-        if (!productoRepositorio.existsById(String.valueOf(producto.getId()))) {
-            throw new ProductoException("El producto no existe");
-        }
+
 
         return productoRepositorio.save(producto);
     }
@@ -59,14 +57,10 @@ public class AdministradorServicioImplementacion implements AdministradorServici
 
 
 
+
     @Override
     public void eliminarProducto(Producto producto) throws ProductoException {
-        Optional<Producto> productoEncontrado = productoRepositorio.findById(String.valueOf(producto.getId()));
-        if (productoEncontrado.isPresent()) {
-            productoRepositorio.delete(producto);
-        } else {
-            throw new ProductoException("No se pudo eliminar el producto: el producto con el id " + producto.getId() + " no existe en la base de datos");
-        }
+        productoRepositorio.delete(producto);
     }
 
 

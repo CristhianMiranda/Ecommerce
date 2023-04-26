@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -55,7 +56,6 @@ public class AdministradorServicioTest {
 
         administradorServicio.crearProducto("PS5", "REF123", "https://i.postimg.cc/kGjNbhWS/imagen-2023-04-26-032926332.png", 5, "Tecnologia");
 
-        // Obtenemos la lista de productos
         List<Producto> listaProductos = administradorServicio.listarProductos();
 
         // Verificamos que la lista no esté vacía
@@ -100,7 +100,8 @@ public class AdministradorServicioTest {
         administradorServicio.eliminarProducto(productoGuardado);
 
         // Verificar que el producto fue eliminado
-        Assertions.assertNull(administradorRepositorio.findById(String.valueOf(productoGuardado.getId())));
+
+        Assertions.assertTrue(administradorRepositorio.findAll().isEmpty());
     }
 }
 

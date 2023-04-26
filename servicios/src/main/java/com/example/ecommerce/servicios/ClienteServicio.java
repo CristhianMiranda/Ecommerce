@@ -27,7 +27,7 @@ public interface ClienteServicio {
      * @param cantidad La cantidad del producto a agregar al carrito.
      * @param cliente El cliente al cual agregar el producto al carrito.
      */
-    Carrito agregarAlCarrito(int idProducto, int cantidad, Cliente cliente) throws ProductoNoEncontradoException;
+    Carrito agregarAlCarrito(Producto producto, int cantidad, Cliente cliente) throws ProductoNoEncontradoException;
 
     /**
      * Vacía el carrito de compras de un cliente.

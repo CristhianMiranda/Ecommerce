@@ -85,16 +85,12 @@ public class ClienteServicioTest {
         //productoRepositorio.save(producto);
         productoRepositorio.save(producto);
 
-        Carrito carrito1 = clienteServicio.agregarAlCarrito(productoRepositorio.save(producto).getId(),1,clienteRepositorio.save(cliente));
+        Carrito carrito1 = clienteServicio.agregarAlCarrito(producto,1,clienteRepositorio.save(cliente));
 
 
-        Assertions.assertFalse(carritoRepositorio.existsById(String.valueOf(carrito1.getId())));
+        Assertions.assertTrue(carritoRepositorio.existsById(String.valueOf(carrito1.getId())));
 
-/*
-        System.out.println(carrito.getId()+"\n"+clienteServicio.agregarAlCarrito("1",2,cliente).getId());
 
-        Carrito carrito1 = clienteServicio.agregarAlCarrito("1",2,cliente);
-        Assertions.assertEquals(carrito, carrito1 );*/
     }
 
     @Test

@@ -16,7 +16,9 @@ public class Producto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @EqualsAndHashCode.Include
+    private int id;
+
 
     @Column(nullable = false)
     @ToString.Include

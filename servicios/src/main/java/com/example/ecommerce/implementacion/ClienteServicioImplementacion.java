@@ -41,13 +41,10 @@ public class ClienteServicioImplementacion implements ClienteServicio {
         return productos;
     }
     @Override
-    public Carrito agregarAlCarrito(int idProducto, int cantidad, Cliente cliente) throws ProductoNoEncontradoException{
-        Optional<Producto> productoOptional = productoRepositorio.findById(String.valueOf(idProducto));
-        if (!productoOptional.isPresent()) {
-            throw new ProductoNoEncontradoException("No se encontró el producto con ID " + idProducto);
-        }
+    public Carrito agregarAlCarrito(Producto producto, int cantidad, Cliente cliente) throws ProductoNoEncontradoException{
 
-        Producto producto = productoOptional.get();
+
+        //Producto producto1 = productoOptional.get();
 
         if (producto.getCantidad() < cantidad) {
             throw new ProductoException("No hay suficiente stock para la cantidad de productos que necesitas");
