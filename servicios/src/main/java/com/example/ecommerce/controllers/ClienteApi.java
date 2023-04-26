@@ -33,7 +33,6 @@ public class ClienteApi {
     }
 
     @PostMapping("/agregar/{cantidad}")
-    //@ResponseBody
     public ResponseEntity<Carrito> agregarAlCarrito(@RequestBody Producto producto
                                                     ,@PathVariable("cantidad") int cantidad
                                                     ,@RequestBody Cliente cliente) {
