@@ -41,7 +41,7 @@ Antes de ejecutar la aplicación, asegúrate de tener instalado:
 
     
     spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-    spring.datasource.url=jdbc:mysql://localhost:3306/nombre_de_tu_bd
+    spring.datasource.url=jdbc:mysql://localhost:3306/ecommerce
     spring.datasource.username=tu_usuario
     spring.datasource.password=tu_contraseña
 
