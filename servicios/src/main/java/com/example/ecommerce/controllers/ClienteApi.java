@@ -23,7 +23,7 @@ public class ClienteApi {
     @Autowired
     ClienteServicio clienteServicio;
 
-    ClienteRepositorio clienteRepositorio;
+
     @GetMapping("/productos")
     public List<ProductoDto> obtenerProductos()  {
         return clienteServicio.obtenerProductos();
@@ -44,36 +44,5 @@ public class ClienteApi {
     public List<String> obtenerProductos(@PathVariable int cedula)  {
         return clienteServicio.obtenerProductosAgregados(cedula);
     }
-/**
- * ,
- *   "clienteDto": {
- *     "cedula": "123",
- *     "nombre": "Juan"
- *   }
- */
-    /*
 
-    @GetMapping("/productos")
-    @ResponseBody
-    public ArrayList<Producto> visualizarProductos() throws ProductoException {
-
-        return clienteServicio.visualizarProductos();
-    }
-
-    @PostMapping("/agregar/{cantidad}")
-    public ResponseEntity<Carrito> agregarAlCarrito(@RequestBody Producto producto
-                                                    ,@PathVariable("cantidad") int cantidad
-                                                    ,@RequestBody Cliente cliente) {
-        Carrito carrito = clienteServicio.agregarAlCarrito(producto, cantidad, cliente);
-        return ResponseEntity.ok(carrito);
-
-    }
-
-
-    @DeleteMapping("/carrito/vaciar")
-    public void vaciarCarritos(@RequestBody Carrito carrito, @RequestBody Cliente cliente) {
-        clienteServicio.vaciarCarrito(carrito, cliente);
-
-    }
-*/
 }

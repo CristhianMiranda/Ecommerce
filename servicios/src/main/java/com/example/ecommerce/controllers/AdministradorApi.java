@@ -24,7 +24,6 @@ public class AdministradorApi {
     @Autowired
     AdministradorServicio administradorServicio;
 
-    ProductoRepositorio productoRepositorio;
 
     @PostMapping("/crear")
     public ResponseEntity<Producto> crearProducto(

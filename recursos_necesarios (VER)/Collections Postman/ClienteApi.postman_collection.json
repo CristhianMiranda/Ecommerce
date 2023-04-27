@@ -1,0 +1,34 @@
+{
+	"info": {
+		"_postman_id": "3259267d-581f-4270-bcc5-f86d6ef04bda",
+		"name": "ClienteApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22444949"
+	},
+	"item": [
+		{
+			"name": "ObtenerProductos",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "AgregarProductoAlCarrito",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerProductoAgregados",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
