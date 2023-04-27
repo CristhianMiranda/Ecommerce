@@ -5,13 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AdministradorDTO implements Serializable {
-    private int id;
-    private String nombre;
-    private List<ProductoDTO> productos;
+public class DetalleCarritoDto implements Serializable {
+
+    private ProductoDto producto;
+    private CarritoDto carrito;
+    private int cantidad;
 }

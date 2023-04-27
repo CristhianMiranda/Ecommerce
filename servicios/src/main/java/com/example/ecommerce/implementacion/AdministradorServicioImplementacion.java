@@ -1,4 +1,5 @@
 package com.example.ecommerce.implementacion;
+import com.example.ecommerce.dtos.ProductoDto;
 import com.example.ecommerce.entidades.Producto;
 import com.example.ecommerce.excepciones.ProductoException;
 import com.example.ecommerce.repositorios.AdministradorRepositorio;
@@ -7,6 +8,7 @@ import com.example.ecommerce.servicios.AdministradorServicio;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,12 +41,16 @@ public class AdministradorServicioImplementacion implements AdministradorServici
     }
 
     @Override
-    public List<Producto> listarProductos() throws ProductoException {
+    public List<ProductoDto>  obtenerProductos() {
         List<Producto> productos = productoRepositorio.findAll();
-        if (productos.isEmpty()) {
-            throw new ProductoException("No se encontraron productos");
+
+        List<ProductoDto> productosDTO = new ArrayList<>();
+        for (Producto producto : productos) {
+            productosDTO.add(new ProductoDto( producto.getId(),producto.getNombre(), producto.getCategoria(), producto.getCantidad(), producto.getUrlFoto()));
         }
-        return productos;
+
+        return productosDTO;
+
     }
 
     @Override

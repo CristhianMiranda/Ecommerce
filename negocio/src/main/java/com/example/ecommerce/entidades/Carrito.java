@@ -22,11 +22,6 @@ public class Carrito implements Serializable {
     @EqualsAndHashCode.Include
     private int id;
 
-
-    //@Temporal(TemporalType.DATE)
-    @Column(nullable = false)
-    private LocalDateTime fechaCreacionDate;
-
     @ManyToOne
     @JoinColumn(nullable = false)
     private Cliente cliente;

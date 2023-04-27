@@ -26,4 +26,5 @@ public class DetalleCarrito implements Serializable {
     @ToString.Include
     private int cantidad;
 
+
 }

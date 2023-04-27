@@ -1,5 +1,6 @@
 package com.example.ecommerce.controllers;
 
+import com.example.ecommerce.dtos.ProductoDto;
 import com.example.ecommerce.entidades.Carrito;
 import com.example.ecommerce.entidades.Cliente;
 import com.example.ecommerce.entidades.Producto;
@@ -12,10 +13,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/adm")
+@RequestMapping("/admin")
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE })
 public class AdministradorApi {
 
@@ -34,9 +36,9 @@ public class AdministradorApi {
 
     @GetMapping("/listarproductos")
     @ResponseBody
-    public ArrayList<Producto> listarProductos() throws ProductoException {
+    public List<ProductoDto> listarProductos() throws ProductoException {
 
-        return (ArrayList<Producto>) administradorServicio.listarProductos();
+        return administradorServicio.obtenerProductos();
     }
 
     @PutMapping("/actualizar")

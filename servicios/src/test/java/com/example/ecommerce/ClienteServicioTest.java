@@ -1,115 +1,86 @@
 package com.example.ecommerce;
 
-import com.example.ecommerce.dtos.CarritoDTO;
-import com.example.ecommerce.dtos.ClienteDTO;
-import com.example.ecommerce.entidades.Administrador;
-import com.example.ecommerce.entidades.Carrito;
+
+import com.example.ecommerce.dtos.ClienteDto;
+import com.example.ecommerce.dtos.ProductoDto;
 import com.example.ecommerce.entidades.Cliente;
 import com.example.ecommerce.entidades.Producto;
-import com.example.ecommerce.repositorios.AdministradorRepositorio;
-import com.example.ecommerce.repositorios.CarritoRepositorio;
 import com.example.ecommerce.repositorios.ClienteRepositorio;
+import com.example.ecommerce.repositorios.DetalleCarritoRepositorio;
 import com.example.ecommerce.repositorios.ProductoRepositorio;
-import com.example.ecommerce.servicios.AdministradorServicio;
 import com.example.ecommerce.servicios.ClienteServicio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
+import javax.transaction.Transactional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
+//@Transactional
 public class ClienteServicioTest {
     @Autowired
     private ClienteServicio clienteServicio;
-
     @Autowired
     private ProductoRepositorio productoRepositorio;
-
     @Autowired
-    private AdministradorRepositorio administradorRepositorio;
-
-    @Autowired
-    private CarritoRepositorio carritoRepositorio;
+    private DetalleCarritoRepositorio detalleCarritoRepositorio;
     @Autowired
     private ClienteRepositorio clienteRepositorio;
 
     @Test
-    public void visualizarProductos()
+    public void testObtenerProductos()
     {
-        productoRepositorio.deleteAll();
-
-        Administrador administrador = new Administrador();
-        administrador.setNombre("Gustavo");
-
-        Producto producto = new Producto("Pantene","1ED20","https://i.postimg.cc/hjT6ZMZ6/imagen-2023-04-26-010443940.png",10,"Higiene personal");
-        Producto producto1 = new Producto("HeadShoulder","3ED41","https://i.postimg.cc/mDFSwQGt/imagen-2023-04-26-012521974.png",5,"Higiene personal");
-
-
-
-        productoRepositorio.saveAll(Arrays.asList(producto, producto1));
-
-        ArrayList<Producto> productos = clienteServicio.visualizarProductos();
-
-
-        //Verifico si observo los mismos numeros de productos
-        Assertions.assertEquals(productos.size(),productoRepositorio.findAll().size());
-
-
-    }
-
-    @Test
-    public void agregarCarrito(){
-
-        carritoRepositorio.deleteAll();
-        productoRepositorio.deleteAll();
-
-        Cliente cliente = new Cliente();
-        cliente.setCedula(1010125168);
-        cliente.setNombre("Cristhian");
-
-
-        /*
-        Carrito carrito = new Carrito();
-        carrito.setCliente(clienteRepositorio.save(cliente));
-        carrito.setFechaCreacionDate(LocalDateTime.now());
-        carritoRepositorio.save(carrito);
-        */
-        Producto producto = new Producto("Pantene","1ED20","https://i.postimg.cc/hjT6ZMZ6/imagen-2023-04-26-010443940.png",10,"Higiene personal");
-        //producto.setId(30);
-        //productoRepositorio.save(producto);
+       // productoRepositorio.deleteAll();
+        Producto producto = new Producto("PS4","Producto 1", "Categoria 1", 10, "http://urlfoto1.com");
         productoRepositorio.save(producto);
 
-        Carrito carrito1 = clienteServicio.agregarAlCarrito(producto,1,clienteRepositorio.save(cliente));
+        for (ProductoDto obtenerProducto : clienteServicio.obtenerProductos()) {
+            System.out.println(obtenerProducto);
+        }
+        Assertions.assertFalse( clienteServicio.obtenerProductos().isEmpty());
+    }
 
+    @Test
+    public void testAgregarProductoCarrito()
+    {
+        //detalleCarritoRepositorio.deleteAll();
+        if(productoRepositorio.buscarProductoId(1).equals(null))
+        {
+            Producto producto = new Producto("PS5","Producto 1", "Categoria 1", 10, "http://urlfoto1.com");
+            ProductoDto productoDto = new ProductoDto();
+            productoDto.setCantidad(producto.getCantidad());
+            productoDto.setNombre(producto.getNombre());
+            productoDto.setCategoria(producto.getCategoria());
+            productoDto.setId(producto.getId());
+            productoDto.setUrlFoto(producto.getUrlFoto());
+        }else{
+            Producto producto = productoRepositorio.buscarProductoId(1);
+            ProductoDto productoDto = new ProductoDto();
+            productoDto.setCantidad(producto.getCantidad());
+            productoDto.setNombre(producto.getNombre());
+            productoDto.setCategoria(producto.getCategoria());
+            productoDto.setId(producto.getId());
+            productoDto.setUrlFoto(producto.getUrlFoto());
+            Cliente cliente = new Cliente();
+            cliente.setCedula(123);
+            cliente.setNombre("juan");
+            cliente = clienteRepositorio.save(cliente);
 
-        Assertions.assertTrue(carritoRepositorio.existsById(String.valueOf(carrito1.getId())));
+            ClienteDto clienteDto = new ClienteDto(cliente.getCedula(),cliente.getNombre());
+            clienteServicio.agregarProductoCarrito(productoDto,3,clienteDto);
+
+            Assertions.assertFalse(detalleCarritoRepositorio.findAll().isEmpty());
+        }
+
 
 
     }
 
     @Test
-    public void eliminarCarrito()
-    {
-        Cliente cliente = new Cliente();
-        cliente.setCedula(1010124459);
-        cliente.setNombre("Pablo");
-
-
-
-        Carrito carrito = new Carrito();
-        carrito.setCliente(clienteRepositorio.save(cliente));
-        carrito.setFechaCreacionDate(LocalDateTime.now());
-        carritoRepositorio.save(carrito);
-
-
-        clienteServicio.vaciarCarrito(carrito,cliente);
-        Assertions.assertTrue(carritoRepositorio.findAll().isEmpty());
+    public void obtenerProductosAgregados(){
+        Assertions.assertFalse(clienteServicio.obtenerProductosAgregados(123).isEmpty());
     }
-
 }

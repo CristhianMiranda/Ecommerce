@@ -1,5 +1,6 @@
 package com.example.ecommerce;
 
+import com.example.ecommerce.dtos.ProductoDto;
 import com.example.ecommerce.entidades.Producto;
 import com.example.ecommerce.excepciones.ProductoException;
 import com.example.ecommerce.repositorios.AdministradorRepositorio;
@@ -56,7 +57,7 @@ public class AdministradorServicioTest {
 
         administradorServicio.crearProducto("PS5", "REF123", "https://i.postimg.cc/kGjNbhWS/imagen-2023-04-26-032926332.png", 5, "Tecnologia");
 
-        List<Producto> listaProductos = administradorServicio.listarProductos();
+        List<ProductoDto> listaProductos = administradorServicio.obtenerProductos();
 
         // Verificamos que la lista no esté vacía
         Assertions.assertFalse(listaProductos.isEmpty());

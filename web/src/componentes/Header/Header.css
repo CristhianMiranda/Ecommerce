@@ -1,0 +1,81 @@
+
+body {
+    background-color: #F2F5F7;
+    font-family: 'Open Sans',Arial,sans-serif;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+
+}
+
+.headerPrincipal {
+    background-color: black;
+
+
+}
+
+.headerPrincipal .container {
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: space-around;
+    background: black;
+    height: auto;
+}
+
+.headerPrincipal-titulo {
+    font-weight: bold;
+    font-size: 2em;
+    /*margin-bottom: 20px;*/
+}
+
+.headerPrincipal-titulo a .logo {
+    width: 4em;
+    height: 2.9em;
+}
+
+.headerPrincipal-titulo a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.headerPrincipal-nav {
+    display: flex;
+    /*margin-top: 15px;*/
+
+}
+
+.headerPrincipal-nav-link {
+
+
+    padding: 9px;
+    /*margin-left: 55px;*/
+    /* margin-bottom: 10px; */
+    /*color: #9799A6;*/
+    /* background-color: #FFF; */
+    color: white;
+    font-family: 'Iceland';
+    font-style: normal;
+    font-size: 32px;
+    text-decoration: none;
+    transition: .5s;
+    display: block;
+    transition: all 0.5s ease;
+    /*border-bottom: 1px solid #3b3b3b;*/
+}
+
+.headerPrincipal-nav-link:hover {
+    color:whitesmoke;
+    box-shadow: 15px 15px 50px 10px #851A1A;
+
+}
+
+
+button.ingresar
+{
+    background: transparent;
+    border-color: transparent;
+
+}
