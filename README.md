@@ -34,7 +34,7 @@ Antes de ejecutar la aplicación, asegúrate de tener instalado:
 
 2 Crea una bases de datos en MySql:
 
-    create databases ecommerce;
+    create database ecommerce;
     use ecommerce;
 
 3. Actualiza el archivo application.properties con la información de tu base de datos: 
